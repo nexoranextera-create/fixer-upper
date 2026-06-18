@@ -1,6 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
 
-export type Role = "admin" | "rh" | "manager" | "collab";
+export type Role = "admin" | "rh" | "manager" | "collab" | "medecin";
 
 export interface User {
   id: string;
@@ -62,6 +62,12 @@ export const ROLE_META: Record<Role, { label: string; tagline: string; icon: str
     icon: "sparkles",
     path: "/dashboard/collab",
   },
+  medecin: {
+    label: "Occupational Doctor",
+    tagline: "Monitor employee well-being, sick leave patterns and burnout risk — confidentially.",
+    icon: "stethoscope",
+    path: "/dashboard/medecin",
+  },
 };
 
 export interface DemoAccount {
@@ -76,6 +82,7 @@ export const DEMO_ACCOUNTS: DemoAccount[] = [
   { email: "aya@wasl.app",     password: "aya12345",     name: "Aya EL HAQYQY",   role: "collab" },
   { email: "yasmine@wasl.app", password: "yasmine12345", name: "Yasmine AMRI",    role: "manager" },
   { email: "sara@wasl.app",    password: "sara12345",    name: "Sara RAFIK",      role: "rh" },
+  { email: "nadia@wasl.app",   password: "nadia12345",   name: "Dr. Nadia BENNANI", role: "medecin" },
   { email: "oussama@wasl.app", password: "oussama12345", name: "Oussama ETTALALI", role: "admin" },
 ];
 

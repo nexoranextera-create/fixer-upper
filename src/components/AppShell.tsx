@@ -48,6 +48,12 @@ const NAV: Record<Role, { to: string; label: string; icon: React.ComponentType<{
     { to: "/dashboard/admin/settings", label: "Settings", icon: Settings },
     { to: "/dashboard/admin/profile", label: "Profile", icon: UserIcon },
   ],
+  medecin: [
+    { to: "/dashboard/medecin", label: "Overview", icon: LayoutDashboard },
+    { to: "/dashboard/medecin/records", label: "Records", icon: Stethoscope },
+    { to: "/dashboard/medecin/assistant", label: "Assistant", icon: MessageSquare },
+    { to: "/dashboard/medecin/profile", label: "Profile", icon: UserIcon },
+  ],
 };
 
 type Notif = { id: string; t: string; d: string; time: string; kind: "info" | "warn" | "ok"; read?: boolean };
@@ -72,6 +78,11 @@ const NOTIFS: Record<Role, Notif[]> = {
     { id: "1", t: "Unauthorized access attempt", d: "IP 41.x.x.x · blocked automatically.", time: "2m", kind: "warn" },
     { id: "2", t: "Audit log exported", d: "By S. Bennani — security@wasl.app", time: "1h", kind: "info" },
     { id: "3", t: "AI policy updated", d: "Guardrails v4 deployed to production.", time: "Yesterday", kind: "ok", read: true },
+  ],
+  medecin: [
+    { id: "1", t: "Burnout risk pattern detected", d: "Engineering · cross-signal absences + low engagement.", time: "10m", kind: "warn" },
+    { id: "2", t: "Sick-leave certificate to review", d: "Awaiting medical validation.", time: "1h", kind: "info" },
+    { id: "3", t: "Confidentiality reminder", d: "All medical data is end-to-end encrypted.", time: "Yesterday", kind: "ok", read: true },
   ],
 };
 

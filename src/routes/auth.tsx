@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowUpRight, Mail, Lock, ShieldCheck, Compass, Sparkles, HeartHandshake } from "lucide-react";
+import { ArrowUpRight, Mail, Lock, ShieldCheck, Compass, Sparkles, HeartHandshake, Stethoscope } from "lucide-react";
 import { ROLE_META, signIn, DEMO_ACCOUNTS, type Role } from "@/lib/auth";
 import { Logo } from "@/components/Logo";
 
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
-const ICONS = { admin: ShieldCheck, manager: Compass, collab: Sparkles, rh: HeartHandshake } as const;
+const ICONS = { admin: ShieldCheck, manager: Compass, collab: Sparkles, rh: HeartHandshake, medecin: Stethoscope } as const;
 
 function AuthPage() {
   const [email, setEmail] = useState("");

@@ -28,6 +28,9 @@ Refuse harmful or off-scope requests. Flag GDPR / data-minimisation concerns whe
   admin: `You are Wasl, the AI assistant by Humanai for a platform administrator.
 SCOPE: role management, audit interpretation, security posture, configuration.
 Refuse harmful or off-scope requests. Treat all logs as confidential; summarise patterns, never paste raw PII. Recommend least-privilege.`,
+  medecin: `You are Wasl, the AI assistant by Humanai for an occupational doctor.
+SCOPE: occupational health interpretation, sick-leave patterns, burnout signals, ergonomic recommendations, anonymised team well-being analysis.
+Refuse harmful or off-scope requests. NEVER diagnose individuals. Always remind that final medical judgement belongs to the doctor. Treat all health data as strictly confidential.`,
 };
 
 const PII_PATTERNS: [RegExp, string][] = [
@@ -73,7 +76,7 @@ function refusalMessage(kind: string): string {
 
 type ChatRequestBody = {
   messages?: unknown;
-  role?: "collab" | "manager" | "rh" | "admin";
+  role?: "collab" | "manager" | "rh" | "admin" | "medecin";
 };
 
 export const Route = createFileRoute("/api/chat")({
@@ -167,7 +170,7 @@ export const Route = createFileRoute("/api/chat")({
           });
         }
 
-        // KB retrieval
+        // KB + Enterprise documents retrieval (RAG)
         let kbContext = "";
         const citedTitles: string[] = [];
         try {
@@ -175,14 +178,22 @@ export const Route = createFileRoute("/api/chat")({
           const tokens = Array.from(new Set(lastUserText.toLowerCase().match(/[a-zàâçéèêëîïôûùüÿñæœ]{4,}/g) ?? [])).slice(0, 8);
           if (tokens.length) {
             const ors = tokens.map((t) => `title.ilike.%${t}%,content.ilike.%${t}%,tags.cs.{${t}}`).join(",");
-            const { data: arts } = await admin.from("kb_articles").select("title,category,content").eq("published", true).or(ors).limit(4);
-            if (arts && arts.length) {
-              arts.forEach((a: any) => citedTitles.push(a.title));
-              kbContext = "\n\nValidated HR knowledge base excerpts (use as ground truth — cite the title):\n" +
-                arts.map((a: { title: string; category: string; content: string }) => `### ${a.title} (${a.category})\n${a.content}`).join("\n\n");
+            const orsDocs = tokens.map((t) => `title.ilike.%${t}%,content.ilike.%${t}%`).join(",");
+            const [arts, entDocs] = await Promise.all([
+              admin.from("kb_articles").select("title,category,content").eq("published", true).or(ors).limit(3),
+              admin.from("enterprise_documents").select("title,category,content").or(orsDocs).limit(3),
+            ]);
+            const merged: { title: string; category: string; content: string; source: string }[] = [];
+            (arts.data ?? []).forEach((a: any) => merged.push({ ...a, source: "KB" }));
+            (entDocs.data ?? []).forEach((a: any) => merged.push({ ...a, source: "Enterprise" }));
+            if (merged.length) {
+              merged.forEach((a) => citedTitles.push(a.title));
+              kbContext = "\n\nVALIDATED CONTEXT (use as ground truth — cite the title):\n" +
+                merged.map((a) => `### ${a.title} (${a.source} · ${a.category})\n${a.content.slice(0, 2000)}`).join("\n\n");
             }
           }
         } catch (e) { console.error("kb fetch failed", e); }
+
 
         const profileCtx = userProfile
           ? `\n\nThe current user is ${userProfile.full_name}${userProfile.position ? `, ${userProfile.position}` : ""}${userProfile.department ? ` (${userProfile.department})` : ""}.`

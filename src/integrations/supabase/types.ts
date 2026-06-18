@@ -279,6 +279,42 @@ export type Database = {
           },
         ]
       }
+      enterprise_documents: {
+        Row: {
+          category: string | null
+          content: string
+          created_at: string
+          file_url: string | null
+          id: string
+          organisation_id: string | null
+          title: string
+          updated_at: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          category?: string | null
+          content: string
+          created_at?: string
+          file_url?: string | null
+          id?: string
+          organisation_id?: string | null
+          title: string
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          category?: string | null
+          content?: string
+          created_at?: string
+          file_url?: string | null
+          id?: string
+          organisation_id?: string | null
+          title?: string
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
       kb_articles: {
         Row: {
           audience: string
@@ -315,6 +351,33 @@ export type Database = {
           tags?: string[]
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      mood_checks: {
+        Row: {
+          created_at: string
+          department: string | null
+          id: string
+          note: string | null
+          score: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          department?: string | null
+          id?: string
+          note?: string | null
+          score: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          department?: string | null
+          id?: string
+          note?: string | null
+          score?: number
+          user_id?: string
         }
         Relationships: []
       }
@@ -596,7 +659,7 @@ export type Database = {
       absence_status: "pending" | "approved" | "rejected" | "cancelled"
       absence_type: "vacation" | "sick" | "remote" | "unpaid" | "training"
       alert_severity: "info" | "warning" | "critical"
-      app_role: "admin" | "rh" | "manager" | "collab"
+      app_role: "admin" | "rh" | "manager" | "collab" | "medecin"
       document_status: "pending" | "approved" | "rejected" | "draft"
       document_type:
         | "contract"
@@ -737,7 +800,7 @@ export const Constants = {
       absence_status: ["pending", "approved", "rejected", "cancelled"],
       absence_type: ["vacation", "sick", "remote", "unpaid", "training"],
       alert_severity: ["info", "warning", "critical"],
-      app_role: ["admin", "rh", "manager", "collab"],
+      app_role: ["admin", "rh", "manager", "collab", "medecin"],
       document_status: ["pending", "approved", "rejected", "draft"],
       document_type: [
         "contract",
