@@ -18,6 +18,7 @@ import { Route as DashboardCollabRouteImport } from './routes/dashboard.collab'
 import { Route as DashboardAdminRouteImport } from './routes/dashboard.admin'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as DashboardRhIndexRouteImport } from './routes/dashboard.rh.index'
+import { Route as DashboardMedecinIndexRouteImport } from './routes/dashboard.medecin.index'
 import { Route as DashboardManagerIndexRouteImport } from './routes/dashboard.manager.index'
 import { Route as DashboardCollabIndexRouteImport } from './routes/dashboard.collab.index'
 import { Route as DashboardAdminIndexRouteImport } from './routes/dashboard.admin.index'
@@ -90,6 +91,11 @@ const DashboardRhIndexRoute = DashboardRhIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DashboardRhRoute,
+} as any)
+const DashboardMedecinIndexRoute = DashboardMedecinIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardMedecinRoute,
 } as any)
 const DashboardManagerIndexRoute = DashboardManagerIndexRouteImport.update({
   id: '/',
@@ -239,7 +245,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/collab': typeof DashboardCollabRouteWithChildren
   '/dashboard/manager': typeof DashboardManagerRouteWithChildren
-  '/dashboard/medecin': typeof DashboardMedecinRoute
+  '/dashboard/medecin': typeof DashboardMedecinRouteWithChildren
   '/dashboard/rh': typeof DashboardRhRouteWithChildren
   '/api/public/seed-demo': typeof ApiPublicSeedDemoRoute
   '/dashboard/admin/profile': typeof DashboardAdminProfileRoute
@@ -268,13 +274,13 @@ export interface FileRoutesByFullPath {
   '/dashboard/admin/': typeof DashboardAdminIndexRoute
   '/dashboard/collab/': typeof DashboardCollabIndexRoute
   '/dashboard/manager/': typeof DashboardManagerIndexRoute
+  '/dashboard/medecin/': typeof DashboardMedecinIndexRoute
   '/dashboard/rh/': typeof DashboardRhIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/api/chat': typeof ApiChatRoute
-  '/dashboard/medecin': typeof DashboardMedecinRoute
   '/api/public/seed-demo': typeof ApiPublicSeedDemoRoute
   '/dashboard/admin/profile': typeof DashboardAdminProfileRoute
   '/dashboard/admin/security': typeof DashboardAdminSecurityRoute
@@ -302,6 +308,7 @@ export interface FileRoutesByTo {
   '/dashboard/admin': typeof DashboardAdminIndexRoute
   '/dashboard/collab': typeof DashboardCollabIndexRoute
   '/dashboard/manager': typeof DashboardManagerIndexRoute
+  '/dashboard/medecin': typeof DashboardMedecinIndexRoute
   '/dashboard/rh': typeof DashboardRhIndexRoute
 }
 export interface FileRoutesById {
@@ -312,7 +319,7 @@ export interface FileRoutesById {
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/collab': typeof DashboardCollabRouteWithChildren
   '/dashboard/manager': typeof DashboardManagerRouteWithChildren
-  '/dashboard/medecin': typeof DashboardMedecinRoute
+  '/dashboard/medecin': typeof DashboardMedecinRouteWithChildren
   '/dashboard/rh': typeof DashboardRhRouteWithChildren
   '/api/public/seed-demo': typeof ApiPublicSeedDemoRoute
   '/dashboard/admin/profile': typeof DashboardAdminProfileRoute
@@ -341,6 +348,7 @@ export interface FileRoutesById {
   '/dashboard/admin/': typeof DashboardAdminIndexRoute
   '/dashboard/collab/': typeof DashboardCollabIndexRoute
   '/dashboard/manager/': typeof DashboardManagerIndexRoute
+  '/dashboard/medecin/': typeof DashboardMedecinIndexRoute
   '/dashboard/rh/': typeof DashboardRhIndexRoute
 }
 export interface FileRouteTypes {
@@ -381,13 +389,13 @@ export interface FileRouteTypes {
     | '/dashboard/admin/'
     | '/dashboard/collab/'
     | '/dashboard/manager/'
+    | '/dashboard/medecin/'
     | '/dashboard/rh/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
     | '/api/chat'
-    | '/dashboard/medecin'
     | '/api/public/seed-demo'
     | '/dashboard/admin/profile'
     | '/dashboard/admin/security'
@@ -415,6 +423,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin'
     | '/dashboard/collab'
     | '/dashboard/manager'
+    | '/dashboard/medecin'
     | '/dashboard/rh'
   id:
     | '__root__'
@@ -453,6 +462,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin/'
     | '/dashboard/collab/'
     | '/dashboard/manager/'
+    | '/dashboard/medecin/'
     | '/dashboard/rh/'
   fileRoutesById: FileRoutesById
 }
@@ -463,7 +473,7 @@ export interface RootRouteChildren {
   DashboardAdminRoute: typeof DashboardAdminRouteWithChildren
   DashboardCollabRoute: typeof DashboardCollabRouteWithChildren
   DashboardManagerRoute: typeof DashboardManagerRouteWithChildren
-  DashboardMedecinRoute: typeof DashboardMedecinRoute
+  DashboardMedecinRoute: typeof DashboardMedecinRouteWithChildren
   DashboardRhRoute: typeof DashboardRhRouteWithChildren
   ApiPublicSeedDemoRoute: typeof ApiPublicSeedDemoRoute
 }
@@ -532,6 +542,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard/rh/'
       preLoaderRoute: typeof DashboardRhIndexRouteImport
       parentRoute: typeof DashboardRhRoute
+    }
+    '/dashboard/medecin/': {
+      id: '/dashboard/medecin/'
+      path: '/'
+      fullPath: '/dashboard/medecin/'
+      preLoaderRoute: typeof DashboardMedecinIndexRouteImport
+      parentRoute: typeof DashboardMedecinRoute
     }
     '/dashboard/manager/': {
       id: '/dashboard/manager/'
@@ -794,6 +811,17 @@ const DashboardManagerRouteChildren: DashboardManagerRouteChildren = {
 const DashboardManagerRouteWithChildren =
   DashboardManagerRoute._addFileChildren(DashboardManagerRouteChildren)
 
+interface DashboardMedecinRouteChildren {
+  DashboardMedecinIndexRoute: typeof DashboardMedecinIndexRoute
+}
+
+const DashboardMedecinRouteChildren: DashboardMedecinRouteChildren = {
+  DashboardMedecinIndexRoute: DashboardMedecinIndexRoute,
+}
+
+const DashboardMedecinRouteWithChildren =
+  DashboardMedecinRoute._addFileChildren(DashboardMedecinRouteChildren)
+
 interface DashboardRhRouteChildren {
   DashboardRhDocumentsRoute: typeof DashboardRhDocumentsRoute
   DashboardRhKnowledgeRoute: typeof DashboardRhKnowledgeRoute
@@ -825,7 +853,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardAdminRoute: DashboardAdminRouteWithChildren,
   DashboardCollabRoute: DashboardCollabRouteWithChildren,
   DashboardManagerRoute: DashboardManagerRouteWithChildren,
-  DashboardMedecinRoute: DashboardMedecinRoute,
+  DashboardMedecinRoute: DashboardMedecinRouteWithChildren,
   DashboardRhRoute: DashboardRhRouteWithChildren,
   ApiPublicSeedDemoRoute: ApiPublicSeedDemoRoute,
 }
