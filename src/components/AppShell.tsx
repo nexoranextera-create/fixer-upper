@@ -48,6 +48,12 @@ const NAV: Record<Role, { to: string; label: string; icon: React.ComponentType<{
     { to: "/dashboard/admin/settings", label: "Settings", icon: Settings },
     { to: "/dashboard/admin/profile", label: "Profile", icon: UserIcon },
   ],
+  medecin: [
+    { to: "/dashboard/medecin", label: "Overview", icon: LayoutDashboard },
+    { to: "/dashboard/medecin/records", label: "Records", icon: Stethoscope },
+    { to: "/dashboard/medecin/assistant", label: "Assistant", icon: MessageSquare },
+    { to: "/dashboard/medecin/profile", label: "Profile", icon: UserIcon },
+  ],
 };
 
 type Notif = { id: string; t: string; d: string; time: string; kind: "info" | "warn" | "ok"; read?: boolean };
