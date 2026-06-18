@@ -62,6 +62,12 @@ export const ROLE_META: Record<Role, { label: string; tagline: string; icon: str
     icon: "sparkles",
     path: "/dashboard/collab",
   },
+  medecin: {
+    label: "Occupational Doctor",
+    tagline: "Monitor employee well-being, sick leave patterns and burnout risk — confidentially.",
+    icon: "stethoscope",
+    path: "/dashboard/medecin",
+  },
 };
 
 export interface DemoAccount {
