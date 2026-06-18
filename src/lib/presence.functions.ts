@@ -16,13 +16,13 @@ export const checkInOut = createServerFn({ method: "POST" })
     if (data.action === "in") {
       if (existing?.check_in) return { presence: existing, alreadyIn: true };
       const payload = existing
-        ? await supabase.from("presence").update({ check_in: now }).eq("id", existing.id).select("*").single()
-        : await supabase.from("presence").insert({ employee_id: userId, day, check_in: now, source: "biometric", method: "badge", device_id: "WEB-MOCK" }).select("*").single();
+        ? await supabase.from("presence").update({ check_in: now }).eq("id", existing.id).select("*").maybeSingle()
+        : await supabase.from("presence").insert({ employee_id: userId, day, check_in: now, source: "biometric", method: "badge", device_id: "WEB-MOCK" }).select("*").maybeSingle();
       if (payload.error) throw new Error(payload.error.message);
       return { presence: payload.data };
     } else {
       if (!existing) throw new Error("No check-in recorded today");
-      const { data: row, error } = await supabase.from("presence").update({ check_out: now }).eq("id", existing.id).select("*").single();
+      const { data: row, error } = await supabase.from("presence").update({ check_out: now }).eq("id", existing.id).select("*").maybeSingle();
       if (error) throw new Error(error.message);
       return { presence: row };
     }
