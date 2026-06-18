@@ -18,11 +18,11 @@ export function Logo({
       <img src={wasl} alt="Wasl" className={`${className} w-auto object-contain block`} />
       {showByline && (
         <span
-          className="absolute bottom-0 left-0 flex items-center gap-1.5 text-[11px] tracking-[0.15em] uppercase text-muted-foreground whitespace-nowrap"
-          aria-label="by Humanai"
+          className="absolute right-[-3.5rem] bottom-[-0.3rem] flex items-end gap-1 text-[9px] uppercase tracking-[0.12em] text-muted-foreground whitespace-nowrap"
+          aria-label="By Humanai"
         >
-          <span className="font-medium">by</span>
-          <img src={humanai} alt="Humanai" className="h-[11px] w-auto object-contain" />
+          <span className="font-semibold">By</span>
+          <span className="font-semibold">HUMANAI</span>
         </span>
       )}
     </div>
