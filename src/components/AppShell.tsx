@@ -79,6 +79,11 @@ const NOTIFS: Record<Role, Notif[]> = {
     { id: "2", t: "Audit log exported", d: "By S. Bennani — security@wasl.app", time: "1h", kind: "info" },
     { id: "3", t: "AI policy updated", d: "Guardrails v4 deployed to production.", time: "Yesterday", kind: "ok", read: true },
   ],
+  medecin: [
+    { id: "1", t: "Burnout risk pattern detected", d: "Engineering · cross-signal absences + low engagement.", time: "10m", kind: "warn" },
+    { id: "2", t: "Sick-leave certificate to review", d: "Awaiting medical validation.", time: "1h", kind: "info" },
+    { id: "3", t: "Confidentiality reminder", d: "All medical data is end-to-end encrypted.", time: "Yesterday", kind: "ok", read: true },
+  ],
 };
 
 const KIND_ICON = { info: Info, warn: AlertTriangle, ok: CheckCircle2 };
