@@ -21,7 +21,7 @@ function Insights() {
         </Panel>
         <Panel title="Scenarios">
           {[
-            { t: "Redistribute Yasmine's load", o: "Burnout risk ↓ 38%, delivery delay +3d" },
+            { t: "Redistribute most-loaded collaborator's tasks", o: "Burnout risk ↓ 38%, delivery delay +3d" },
             { t: "Hire 1 backend engineer", o: "Workload ↓ 12% across team within 2 sprints" },
             { t: "Skip Q2 hackathon", o: "Engagement ↓ ~5pt, time saved 80h" },
           ].map((s, i) => (

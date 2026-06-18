@@ -479,10 +479,14 @@ export type Database = {
       }
       profiles: {
         Row: {
+          address: string | null
           avatar_url: string | null
+          bio: string | null
           created_at: string
           department: string | null
           email: string
+          emergency_contact: string | null
+          emergency_phone: string | null
           full_name: string
           hire_date: string | null
           id: string
@@ -494,10 +498,14 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          address?: string | null
           avatar_url?: string | null
+          bio?: string | null
           created_at?: string
           department?: string | null
           email: string
+          emergency_contact?: string | null
+          emergency_phone?: string | null
           full_name?: string
           hire_date?: string | null
           id: string
@@ -509,10 +517,14 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          address?: string | null
           avatar_url?: string | null
+          bio?: string | null
           created_at?: string
           department?: string | null
           email?: string
+          emergency_contact?: string | null
+          emergency_phone?: string | null
           full_name?: string
           hire_date?: string | null
           id?: string
@@ -583,13 +595,7 @@ export type Database = {
     Enums: {
       absence_status: "pending" | "approved" | "rejected" | "cancelled"
       absence_type: "vacation" | "sick" | "remote" | "unpaid" | "training"
-      alert_severity:
-        | "info"
-        | "warning"
-        | "critical"
-        | "low"
-        | "medium"
-        | "high"
+      alert_severity: "info" | "warning" | "critical"
       app_role: "admin" | "rh" | "manager" | "collab"
       document_status: "pending" | "approved" | "rejected" | "draft"
       document_type:
@@ -730,7 +736,7 @@ export const Constants = {
     Enums: {
       absence_status: ["pending", "approved", "rejected", "cancelled"],
       absence_type: ["vacation", "sick", "remote", "unpaid", "training"],
-      alert_severity: ["info", "warning", "critical", "low", "medium", "high"],
+      alert_severity: ["info", "warning", "critical"],
       app_role: ["admin", "rh", "manager", "collab"],
       document_status: ["pending", "approved", "rejected", "draft"],
       document_type: [
