@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRhRouteImport } from './routes/dashboard.rh'
+import { Route as DashboardMedecinRouteImport } from './routes/dashboard.medecin'
 import { Route as DashboardManagerRouteImport } from './routes/dashboard.manager'
 import { Route as DashboardCollabRouteImport } from './routes/dashboard.collab'
 import { Route as DashboardAdminRouteImport } from './routes/dashboard.admin'
@@ -58,6 +59,11 @@ const IndexRoute = IndexRouteImport.update({
 const DashboardRhRoute = DashboardRhRouteImport.update({
   id: '/dashboard/rh',
   path: '/dashboard/rh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardMedecinRoute = DashboardMedecinRouteImport.update({
+  id: '/dashboard/medecin',
+  path: '/dashboard/medecin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardManagerRoute = DashboardManagerRouteImport.update({
@@ -233,6 +239,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/collab': typeof DashboardCollabRouteWithChildren
   '/dashboard/manager': typeof DashboardManagerRouteWithChildren
+  '/dashboard/medecin': typeof DashboardMedecinRoute
   '/dashboard/rh': typeof DashboardRhRouteWithChildren
   '/api/public/seed-demo': typeof ApiPublicSeedDemoRoute
   '/dashboard/admin/profile': typeof DashboardAdminProfileRoute
@@ -267,6 +274,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/api/chat': typeof ApiChatRoute
+  '/dashboard/medecin': typeof DashboardMedecinRoute
   '/api/public/seed-demo': typeof ApiPublicSeedDemoRoute
   '/dashboard/admin/profile': typeof DashboardAdminProfileRoute
   '/dashboard/admin/security': typeof DashboardAdminSecurityRoute
@@ -304,6 +312,7 @@ export interface FileRoutesById {
   '/dashboard/admin': typeof DashboardAdminRouteWithChildren
   '/dashboard/collab': typeof DashboardCollabRouteWithChildren
   '/dashboard/manager': typeof DashboardManagerRouteWithChildren
+  '/dashboard/medecin': typeof DashboardMedecinRoute
   '/dashboard/rh': typeof DashboardRhRouteWithChildren
   '/api/public/seed-demo': typeof ApiPublicSeedDemoRoute
   '/dashboard/admin/profile': typeof DashboardAdminProfileRoute
@@ -343,6 +352,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin'
     | '/dashboard/collab'
     | '/dashboard/manager'
+    | '/dashboard/medecin'
     | '/dashboard/rh'
     | '/api/public/seed-demo'
     | '/dashboard/admin/profile'
@@ -377,6 +387,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/api/chat'
+    | '/dashboard/medecin'
     | '/api/public/seed-demo'
     | '/dashboard/admin/profile'
     | '/dashboard/admin/security'
@@ -413,6 +424,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin'
     | '/dashboard/collab'
     | '/dashboard/manager'
+    | '/dashboard/medecin'
     | '/dashboard/rh'
     | '/api/public/seed-demo'
     | '/dashboard/admin/profile'
@@ -451,6 +463,7 @@ export interface RootRouteChildren {
   DashboardAdminRoute: typeof DashboardAdminRouteWithChildren
   DashboardCollabRoute: typeof DashboardCollabRouteWithChildren
   DashboardManagerRoute: typeof DashboardManagerRouteWithChildren
+  DashboardMedecinRoute: typeof DashboardMedecinRoute
   DashboardRhRoute: typeof DashboardRhRouteWithChildren
   ApiPublicSeedDemoRoute: typeof ApiPublicSeedDemoRoute
 }
@@ -476,6 +489,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard/rh'
       fullPath: '/dashboard/rh'
       preLoaderRoute: typeof DashboardRhRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/medecin': {
+      id: '/dashboard/medecin'
+      path: '/dashboard/medecin'
+      fullPath: '/dashboard/medecin'
+      preLoaderRoute: typeof DashboardMedecinRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/manager': {
@@ -805,6 +825,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardAdminRoute: DashboardAdminRouteWithChildren,
   DashboardCollabRoute: DashboardCollabRouteWithChildren,
   DashboardManagerRoute: DashboardManagerRouteWithChildren,
+  DashboardMedecinRoute: DashboardMedecinRoute,
   DashboardRhRoute: DashboardRhRouteWithChildren,
   ApiPublicSeedDemoRoute: ApiPublicSeedDemoRoute,
 }
