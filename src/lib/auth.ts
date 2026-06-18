@@ -79,11 +79,18 @@ export interface DemoAccount {
 
 // Seed accounts (created in Lovable Cloud Auth via the seedDemoAccounts server fn).
 export const DEMO_ACCOUNTS: DemoAccount[] = [
-  { email: "aya@wasl.app",     password: "aya12345",     name: "Aya EL HAQYQY",   role: "collab" },
-  { email: "yasmine@wasl.app", password: "yasmine12345", name: "Yasmine AMRI",    role: "manager" },
-  { email: "sara@wasl.app",    password: "sara12345",    name: "Sara RAFIK",      role: "rh" },
-  { email: "nadia@wasl.app",   password: "nadia12345",   name: "Dr. Nadia BENNANI", role: "medecin" },
-  { email: "oussama@wasl.app", password: "oussama12345", name: "Oussama ETTALALI", role: "admin" },
+  { email: "aya@wasl.app",     password: "aya12345",     name: "Aya EL HAQYQY",       role: "collab" },
+  { email: "mehdi@wasl.app",   password: "mehdi12345",   name: "Mehdi ZIANI",         role: "collab" },
+  { email: "salma@wasl.app",   password: "salma12345",   name: "Salma BENALI",        role: "collab" },
+  { email: "rachid@wasl.app",  password: "rachid12345",  name: "Rachid TAZI",         role: "collab" },
+  { email: "imane@wasl.app",   password: "imane12345",   name: "Imane EL FASSI",      role: "collab" },
+  { email: "youssef@wasl.app", password: "youssef12345", name: "Youssef CHAOUI",      role: "collab" },
+  { email: "yasmine@wasl.app", password: "yasmine12345", name: "Yasmine AMRI",        role: "manager" },
+  { email: "khalid@wasl.app",  password: "khalid12345",  name: "Khalid NACIRI",       role: "manager" },
+  { email: "sara@wasl.app",    password: "sara12345",    name: "Sara RAFIK",          role: "rh" },
+  { email: "hajar@wasl.app",   password: "hajar12345",   name: "Hajar BERRADA",       role: "rh" },
+  { email: "nadia@wasl.app",   password: "nadia12345",   name: "Dr. Nadia BENNANI",   role: "medecin" },
+  { email: "oussama@wasl.app", password: "oussama12345", name: "Oussama ETTALALI",    role: "admin" },
 ];
 
 /**

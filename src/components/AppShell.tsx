@@ -18,6 +18,7 @@ const NAV: Record<Role, { to: string; label: string; icon: React.ComponentType<{
     { to: "/dashboard/collab/assistant", label: "Assistant", icon: MessageSquare },
     { to: "/dashboard/collab/leave", label: "Leave", icon: CalendarDays },
     { to: "/dashboard/collab/presence", label: "Presence", icon: Fingerprint },
+    { to: "/dashboard/collab/medical", label: "Doctor", icon: Stethoscope },
     { to: "/dashboard/collab/documents", label: "Docs", icon: FileText },
     { to: "/dashboard/collab/onboarding", label: "Onboard", icon: Compass },
     { to: "/dashboard/collab/offboarding", label: "Offboard", icon: LogOut },
@@ -50,6 +51,7 @@ const NAV: Record<Role, { to: string; label: string; icon: React.ComponentType<{
   ],
   medecin: [
     { to: "/dashboard/medecin", label: "Overview", icon: LayoutDashboard },
+    { to: "/dashboard/medecin/requests", label: "Requests", icon: ClipboardList },
     { to: "/dashboard/medecin/records", label: "Records", icon: Stethoscope },
     { to: "/dashboard/medecin/assistant", label: "Assistant", icon: MessageSquare },
     { to: "/dashboard/medecin/profile", label: "Profile", icon: UserIcon },
