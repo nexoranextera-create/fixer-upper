@@ -8,10 +8,13 @@ export const Route = createFileRoute("/dashboard/manager/alerts")({
   component: Alerts,
 });
 
+// Ethics: risk/disengagement signals are surfaced as pseudonyms (Collab #ID),
+// never as real names. Identity is revealed only through a separate, audited
+// "request identity" flow handled by RH — not here.
 const SEED = [
-  { id: "1", i: Heart, t: "Burnout signal · Yasmine", d: "Sleep score down, after-hour messages up. Suggested 1:1.", lv: "critical" as const },
-  { id: "2", i: Bell, t: "Disengagement risk · Omar", d: "Engagement dropped 12% over 3 weeks.", lv: "high" as const },
-  { id: "3", i: Calendar, t: "Probation review due · Mehdi", d: "End of probation in 11 days. Schedule feedback.", lv: "medium" as const },
+  { id: "1", i: Heart, t: "Burnout signal · Collab #4821", d: "Sleep score down, after-hour messages up. Suggested 1:1 via HR.", lv: "critical" as const },
+  { id: "2", i: Bell, t: "Disengagement risk · Collab #2017", d: "Engagement dropped 12% over 3 weeks.", lv: "high" as const },
+  { id: "3", i: Calendar, t: "Probation review due · Collab #6390", d: "End of probation in 11 days. Schedule feedback with HR.", lv: "medium" as const },
 ];
 
 type Alert = typeof SEED[number];

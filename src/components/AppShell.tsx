@@ -5,10 +5,12 @@ import {
   CheckCircle2, AlertTriangle, Info, HeartHandshake, ClipboardList,
   CalendarDays, Fingerprint, Stethoscope, CheckSquare
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { getUser, logout, ROLE_META, tourSeen, type Role, type User } from "@/lib/auth";
 import { DemoTour } from "@/components/dashboard/DemoTour";
 import { Logo } from "@/components/Logo";
+import { BottomNav } from "@/components/BottomNav";
+import { useRealtimeNotifs, type RTNotif } from "@/hooks/useRealtimeNotifs";
 
 const NAV: Record<Role, { to: string; label: string; icon: React.ComponentType<{ className?: string }> }[]> = {
   collab: [
@@ -59,7 +61,7 @@ const NOTIFS: Record<Role, Notif[]> = {
   manager: [
     { id: "1", t: "Engagement dip detected", d: "Engineering · 3 collaborators showing weak signals.", time: "5m", kind: "warn" },
     { id: "2", t: "Weekly team report", d: "Your Monday summary is available.", time: "1h", kind: "info" },
-    { id: "3", t: "Leave request approved", d: "S. El Idrissi · 14–18 July.", time: "3h", kind: "ok", read: true },
+    { id: "3", t: "Leave request approved", d: "Collab #5184 · 14–18 July.", time: "3h", kind: "ok", read: true },
   ],
   rh: [
     { id: "1", t: "Onboarding stalled · M. Ziani", d: "Day-7 checkpoint missed. Suggest contact.", time: "8m", kind: "warn" },
@@ -92,6 +94,12 @@ export function AppShell({ role }: { role: Role }) {
     setNotifs(NOTIFS[role]);
     if (!tourSeen(u.id)) setShowTour(true);
   }, [role, navigate]);
+
+  // Realtime notifications — prepend new ones as they arrive from Supabase Realtime.
+  const onNewNotif = useCallback((n: RTNotif) => {
+    setNotifs((prev) => (prev.some((x) => x.id === n.id) ? prev : [n, ...prev]));
+  }, []);
+  useRealtimeNotifs(role, onNewNotif);
 
   useEffect(() => {
     if (notifsOpen) document.body.classList.add('notifs-open');
@@ -154,15 +162,10 @@ export function AppShell({ role }: { role: Role }) {
         <Outlet />
       </main>
 
-      {/* Bottom nav */}
-      <nav className={`bottom-nav ${notifsOpen ? "hidden" : ""}`}>
-        {NAV[role].map(({ to, label, icon: Icon }) => (
-          <Link key={to} to={to as never} activeOptions={{ exact: true }}>
-            <Icon className="w-4 h-4" />
-            <span className="hidden sm:inline">{label}</span>
-          </Link>
-        ))}
-      </nav>
+      {/* Bottom nav (responsive: shows up to 4 items + a "More" sheet for the rest) */}
+      <div className={notifsOpen ? "hidden" : ""}>
+        <BottomNav items={NAV[role]} />
+      </div>
 
       {/* === Notifications drawer === */}
       {notifsOpen && (
