@@ -14,7 +14,7 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
-const ICONS = { admin: ShieldCheck, manager: Compass, collab: Sparkles, rh: HeartHandshake } as const;
+const ICONS = { admin: ShieldCheck, manager: Compass, collab: Sparkles, rh: HeartHandshake, medecin: Stethoscope } as const;
 
 function AuthPage() {
   const [email, setEmail] = useState("");
