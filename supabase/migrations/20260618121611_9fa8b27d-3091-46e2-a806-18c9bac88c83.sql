@@ -1,0 +1,1 @@
+ALTER FUNCTION public.touch_medical_requests() SECURITY INVOKER;

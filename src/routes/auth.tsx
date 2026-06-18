@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowUpRight, Mail, Lock, ShieldCheck, Compass, Sparkles, HeartHandshake, Stethoscope } from "lucide-react";
+import { ArrowUpRight, Mail, Lock, ShieldCheck, Compass, HeartHandshake, Stethoscope, UserRound } from "lucide-react";
 import { ROLE_META, signIn, DEMO_ACCOUNTS, type Role } from "@/lib/auth";
 import { Logo } from "@/components/Logo";
 
@@ -14,7 +14,21 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
-const ICONS = { admin: ShieldCheck, manager: Compass, collab: Sparkles, rh: HeartHandshake, medecin: Stethoscope } as const;
+const ICONS = { admin: ShieldCheck, manager: Compass, collab: UserRound, rh: HeartHandshake, medecin: Stethoscope } as const;
+const ROLE_COLORS: Record<Role, string> = {
+  admin: "#0f172a",
+  manager: "#1e3a8a",
+  collab: "#0891b2",
+  rh: "#be185d",
+  medecin: "#15803d",
+};
+
+function initials(name: string): string {
+  const parts = name.replace(/^Dr\.?\s+/i, "").trim().split(/\s+/);
+  const first = parts[0]?.[0] ?? "";
+  const last = parts[parts.length - 1]?.[0] ?? "";
+  return (first + last).toUpperCase();
+}
 
 function AuthPage() {
   const [email, setEmail] = useState("");
@@ -104,36 +118,38 @@ function AuthPage() {
               </button>
             </form>
 
-            {/* Demo accounts */}
+            {/* Demo accounts — compact square grid */}
             <div className="mt-7">
-              <div className="section-label mb-3">demo accounts</div>
-              <div className="space-y-2">
+              <div className="section-label mb-3">demo accounts — tap to autofill</div>
+              <div className="grid grid-cols-5 gap-2">
                 {DEMO_ACCOUNTS.map((a, i) => {
                   const Icon = ICONS[a.role as Role];
+                  const selected = email === a.email;
                   return (
                     <button
                       key={a.email}
                       onClick={() => quick(i)}
                       type="button"
-                      className="group w-full text-left rounded-2xl border border-border bg-card p-3 flex items-center gap-3 hover:border-foreground transition"
+                      title={`${a.name} · ${ROLE_META[a.role].label}`}
+                      className={`group aspect-square rounded-xl flex flex-col items-center justify-center gap-1 text-white font-display font-bold text-xs transition transform hover:scale-105 hover:shadow-lg ${selected ? "ring-2 ring-offset-2 ring-foreground" : ""}`}
+                      style={{ background: ROLE_COLORS[a.role] }}
                     >
-                      <div className="num-badge !w-10 !h-10 !bg-foreground group-hover:!bg-accent transition">
-                        <Icon className="w-4 h-4" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="font-display font-bold text-sm leading-tight">{a.name}</div>
-                        <div className="text-[10px] tracking-[0.18em] uppercase text-muted-foreground mt-0.5">
-                          {ROLE_META[a.role].label} · {a.email}
-                        </div>
-                      </div>
-                      <span className="text-[9px] tracking-[0.22em] uppercase text-accent font-bold">use</span>
+                      <Icon className="w-3 h-3 opacity-70" />
+                      <span className="text-[11px] tracking-wider">{initials(a.name)}</span>
                     </button>
                   );
                 })}
               </div>
-              <p className="text-[10px] tracking-[0.18em] uppercase text-center text-muted-foreground mt-4">
-                Tap a card to autofill. Password is the first name + 123.
+              <p className="text-[10px] tracking-[0.18em] uppercase text-center text-muted-foreground mt-3">
+                Color = role · Password is the first name + 123
               </p>
+              <div className="flex flex-wrap gap-1.5 justify-center mt-2">
+                {(["collab","manager","rh","medecin","admin"] as Role[]).map((r) => (
+                  <span key={r} className="text-[9px] tracking-[0.15em] uppercase font-bold text-white px-2 py-0.5 rounded-full" style={{ background: ROLE_COLORS[r] }}>
+                    {ROLE_META[r].label.split(" ")[0]}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
