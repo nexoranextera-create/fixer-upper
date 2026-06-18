@@ -82,6 +82,7 @@ export const DEMO_ACCOUNTS: DemoAccount[] = [
   { email: "aya@wasl.app",     password: "aya12345",     name: "Aya EL HAQYQY",   role: "collab" },
   { email: "yasmine@wasl.app", password: "yasmine12345", name: "Yasmine AMRI",    role: "manager" },
   { email: "sara@wasl.app",    password: "sara12345",    name: "Sara RAFIK",      role: "rh" },
+  { email: "nadia@wasl.app",   password: "nadia12345",   name: "Dr. Nadia BENNANI", role: "medecin" },
   { email: "oussama@wasl.app", password: "oussama12345", name: "Oussama ETTALALI", role: "admin" },
 ];
 
