@@ -1,16 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { PageHeader, Panel, Stat } from "@/components/dashboard/Bits";
 import { Modal, Toast } from "@/components/Modal";
-import { FileText, Plus, Download, Loader2 } from "lucide-react";
+import { FileText, Plus, Download, Loader2, BookOpen, Trash2, Sparkles } from "lucide-react";
 import { createDocument, listAllDocuments } from "@/lib/documents.functions";
 import { openPrintablePdf } from "@/lib/pdf";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/dashboard/rh/documents")({
   component: RHDocs,
 });
+
 
 const TEMPLATES: { label: string; type: "certificate"|"contract"|"policy"|"other" }[] = [
   { label: "Salary certificate", type: "certificate" },
