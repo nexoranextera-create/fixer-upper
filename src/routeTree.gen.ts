@@ -43,6 +43,7 @@ import { Route as DashboardAdminUsersRouteImport } from './routes/dashboard.admi
 import { Route as DashboardAdminSettingsRouteImport } from './routes/dashboard.admin.settings'
 import { Route as DashboardAdminSecurityRouteImport } from './routes/dashboard.admin.security'
 import { Route as DashboardAdminProfileRouteImport } from './routes/dashboard.admin.profile'
+import { Route as ApiPublicSeedDemoRouteImport } from './routes/api/public/seed-demo'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
@@ -219,6 +220,11 @@ const DashboardAdminProfileRoute = DashboardAdminProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => DashboardAdminRoute,
 } as any)
+const ApiPublicSeedDemoRoute = ApiPublicSeedDemoRouteImport.update({
+  id: '/api/public/seed-demo',
+  path: '/api/public/seed-demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -228,6 +234,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/collab': typeof DashboardCollabRouteWithChildren
   '/dashboard/manager': typeof DashboardManagerRouteWithChildren
   '/dashboard/rh': typeof DashboardRhRouteWithChildren
+  '/api/public/seed-demo': typeof ApiPublicSeedDemoRoute
   '/dashboard/admin/profile': typeof DashboardAdminProfileRoute
   '/dashboard/admin/security': typeof DashboardAdminSecurityRoute
   '/dashboard/admin/settings': typeof DashboardAdminSettingsRoute
@@ -260,6 +267,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/public/seed-demo': typeof ApiPublicSeedDemoRoute
   '/dashboard/admin/profile': typeof DashboardAdminProfileRoute
   '/dashboard/admin/security': typeof DashboardAdminSecurityRoute
   '/dashboard/admin/settings': typeof DashboardAdminSettingsRoute
@@ -297,6 +305,7 @@ export interface FileRoutesById {
   '/dashboard/collab': typeof DashboardCollabRouteWithChildren
   '/dashboard/manager': typeof DashboardManagerRouteWithChildren
   '/dashboard/rh': typeof DashboardRhRouteWithChildren
+  '/api/public/seed-demo': typeof ApiPublicSeedDemoRoute
   '/dashboard/admin/profile': typeof DashboardAdminProfileRoute
   '/dashboard/admin/security': typeof DashboardAdminSecurityRoute
   '/dashboard/admin/settings': typeof DashboardAdminSettingsRoute
@@ -335,6 +344,7 @@ export interface FileRouteTypes {
     | '/dashboard/collab'
     | '/dashboard/manager'
     | '/dashboard/rh'
+    | '/api/public/seed-demo'
     | '/dashboard/admin/profile'
     | '/dashboard/admin/security'
     | '/dashboard/admin/settings'
@@ -367,6 +377,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/api/chat'
+    | '/api/public/seed-demo'
     | '/dashboard/admin/profile'
     | '/dashboard/admin/security'
     | '/dashboard/admin/settings'
@@ -403,6 +414,7 @@ export interface FileRouteTypes {
     | '/dashboard/collab'
     | '/dashboard/manager'
     | '/dashboard/rh'
+    | '/api/public/seed-demo'
     | '/dashboard/admin/profile'
     | '/dashboard/admin/security'
     | '/dashboard/admin/settings'
@@ -440,6 +452,7 @@ export interface RootRouteChildren {
   DashboardCollabRoute: typeof DashboardCollabRouteWithChildren
   DashboardManagerRoute: typeof DashboardManagerRouteWithChildren
   DashboardRhRoute: typeof DashboardRhRouteWithChildren
+  ApiPublicSeedDemoRoute: typeof ApiPublicSeedDemoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -682,6 +695,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardAdminProfileRouteImport
       parentRoute: typeof DashboardAdminRoute
     }
+    '/api/public/seed-demo': {
+      id: '/api/public/seed-demo'
+      path: '/api/public/seed-demo'
+      fullPath: '/api/public/seed-demo'
+      preLoaderRoute: typeof ApiPublicSeedDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -786,6 +806,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardCollabRoute: DashboardCollabRouteWithChildren,
   DashboardManagerRoute: DashboardManagerRouteWithChildren,
   DashboardRhRoute: DashboardRhRouteWithChildren,
+  ApiPublicSeedDemoRoute: ApiPublicSeedDemoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
