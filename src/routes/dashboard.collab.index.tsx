@@ -70,6 +70,10 @@ function CollabHome() {
         ))}
       </div>
 
+      {/* Mood Pulse — weekly anonymous well-being check */}
+      <Reveal><MoodPulse /></Reveal>
+
+
       {/* Activity */}
       <Reveal>
         <Panel label="LAST 14 DAYS" title="Your activity">
