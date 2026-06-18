@@ -3,6 +3,7 @@ import { Panel, Stat, AreaChart } from "@/components/dashboard/Bits";
 import { ExecutiveHero } from "@/components/dashboard/ExecutiveHero";
 import { TiltCard, Reveal, Parallax, GlowRing } from "@/components/dashboard/Wow";
 import { MessageSquare, FileText, Compass, ArrowUpRight, Calendar, CheckCircle2, Sparkles, Heart, Clock } from "lucide-react";
+import { MoodPulse } from "@/components/dashboard/MoodPulse";
 
 export const Route = createFileRoute("/dashboard/collab/")({
   component: CollabHome,
