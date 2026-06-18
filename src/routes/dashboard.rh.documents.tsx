@@ -96,6 +96,8 @@ function RHDocs() {
         </div>
       </Panel>
 
+      <EnterpriseDocsPanel onToast={setToast} />
+
       <Modal open={open} onClose={() => setOpen(false)} kicker="GENERATE" title="New document"
         footer={
           <button form="doc-form" type="submit" disabled={create.isPending} className="pill-btn accent w-full justify-center !py-2.5 !text-[11px] tracking-[0.2em] uppercase disabled:opacity-50">
