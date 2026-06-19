@@ -3,7 +3,7 @@ import {
   LogOut, LayoutDashboard, MessageSquare, FileText, Users, ShieldAlert,
   BarChart3, Settings, Bell, Compass, User as UserIcon, X, MapPin, Mail,
   CheckCircle2, AlertTriangle, Info, HeartHandshake, ClipboardList,
-  CalendarDays, Fingerprint, Stethoscope, CheckSquare
+  CalendarDays, Fingerprint, Stethoscope, CheckSquare, Calculator, Shield
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { getUser, logout, ROLE_META, tourSeen, type Role, type User } from "@/lib/auth";

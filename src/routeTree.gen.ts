@@ -48,6 +48,7 @@ import { Route as DashboardCollabLeaveRouteImport } from './routes/dashboard.col
 import { Route as DashboardCollabDocumentsRouteImport } from './routes/dashboard.collab.documents'
 import { Route as DashboardCollabAssistantRouteImport } from './routes/dashboard.collab.assistant'
 import { Route as DashboardAdminUsersRouteImport } from './routes/dashboard.admin.users'
+import { Route as DashboardAdminSupervisionRouteImport } from './routes/dashboard.admin.supervision'
 import { Route as DashboardAdminSettingsRouteImport } from './routes/dashboard.admin.settings'
 import { Route as DashboardAdminSecurityRouteImport } from './routes/dashboard.admin.security'
 import { Route as DashboardAdminProfileRouteImport } from './routes/dashboard.admin.profile'
@@ -256,6 +257,12 @@ const DashboardAdminUsersRoute = DashboardAdminUsersRouteImport.update({
   path: '/users',
   getParentRoute: () => DashboardAdminRoute,
 } as any)
+const DashboardAdminSupervisionRoute =
+  DashboardAdminSupervisionRouteImport.update({
+    id: '/supervision',
+    path: '/supervision',
+    getParentRoute: () => DashboardAdminRoute,
+  } as any)
 const DashboardAdminSettingsRoute = DashboardAdminSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -290,6 +297,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/admin/profile': typeof DashboardAdminProfileRoute
   '/dashboard/admin/security': typeof DashboardAdminSecurityRoute
   '/dashboard/admin/settings': typeof DashboardAdminSettingsRoute
+  '/dashboard/admin/supervision': typeof DashboardAdminSupervisionRoute
   '/dashboard/admin/users': typeof DashboardAdminUsersRoute
   '/dashboard/collab/assistant': typeof DashboardCollabAssistantRoute
   '/dashboard/collab/documents': typeof DashboardCollabDocumentsRoute
@@ -330,6 +338,7 @@ export interface FileRoutesByTo {
   '/dashboard/admin/profile': typeof DashboardAdminProfileRoute
   '/dashboard/admin/security': typeof DashboardAdminSecurityRoute
   '/dashboard/admin/settings': typeof DashboardAdminSettingsRoute
+  '/dashboard/admin/supervision': typeof DashboardAdminSupervisionRoute
   '/dashboard/admin/users': typeof DashboardAdminUsersRoute
   '/dashboard/collab/assistant': typeof DashboardCollabAssistantRoute
   '/dashboard/collab/documents': typeof DashboardCollabDocumentsRoute
@@ -376,6 +385,7 @@ export interface FileRoutesById {
   '/dashboard/admin/profile': typeof DashboardAdminProfileRoute
   '/dashboard/admin/security': typeof DashboardAdminSecurityRoute
   '/dashboard/admin/settings': typeof DashboardAdminSettingsRoute
+  '/dashboard/admin/supervision': typeof DashboardAdminSupervisionRoute
   '/dashboard/admin/users': typeof DashboardAdminUsersRoute
   '/dashboard/collab/assistant': typeof DashboardCollabAssistantRoute
   '/dashboard/collab/documents': typeof DashboardCollabDocumentsRoute
@@ -423,6 +433,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin/profile'
     | '/dashboard/admin/security'
     | '/dashboard/admin/settings'
+    | '/dashboard/admin/supervision'
     | '/dashboard/admin/users'
     | '/dashboard/collab/assistant'
     | '/dashboard/collab/documents'
@@ -463,6 +474,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin/profile'
     | '/dashboard/admin/security'
     | '/dashboard/admin/settings'
+    | '/dashboard/admin/supervision'
     | '/dashboard/admin/users'
     | '/dashboard/collab/assistant'
     | '/dashboard/collab/documents'
@@ -508,6 +520,7 @@ export interface FileRouteTypes {
     | '/dashboard/admin/profile'
     | '/dashboard/admin/security'
     | '/dashboard/admin/settings'
+    | '/dashboard/admin/supervision'
     | '/dashboard/admin/users'
     | '/dashboard/collab/assistant'
     | '/dashboard/collab/documents'
@@ -828,6 +841,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardAdminUsersRouteImport
       parentRoute: typeof DashboardAdminRoute
     }
+    '/dashboard/admin/supervision': {
+      id: '/dashboard/admin/supervision'
+      path: '/supervision'
+      fullPath: '/dashboard/admin/supervision'
+      preLoaderRoute: typeof DashboardAdminSupervisionRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
     '/dashboard/admin/settings': {
       id: '/dashboard/admin/settings'
       path: '/settings'
@@ -863,6 +883,7 @@ interface DashboardAdminRouteChildren {
   DashboardAdminProfileRoute: typeof DashboardAdminProfileRoute
   DashboardAdminSecurityRoute: typeof DashboardAdminSecurityRoute
   DashboardAdminSettingsRoute: typeof DashboardAdminSettingsRoute
+  DashboardAdminSupervisionRoute: typeof DashboardAdminSupervisionRoute
   DashboardAdminUsersRoute: typeof DashboardAdminUsersRoute
   DashboardAdminIndexRoute: typeof DashboardAdminIndexRoute
 }
@@ -871,6 +892,7 @@ const DashboardAdminRouteChildren: DashboardAdminRouteChildren = {
   DashboardAdminProfileRoute: DashboardAdminProfileRoute,
   DashboardAdminSecurityRoute: DashboardAdminSecurityRoute,
   DashboardAdminSettingsRoute: DashboardAdminSettingsRoute,
+  DashboardAdminSupervisionRoute: DashboardAdminSupervisionRoute,
   DashboardAdminUsersRoute: DashboardAdminUsersRoute,
   DashboardAdminIndexRoute: DashboardAdminIndexRoute,
 }
