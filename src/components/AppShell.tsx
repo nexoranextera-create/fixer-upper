@@ -51,22 +51,6 @@ const NAV: Record<Role, { to: string; label: string; icon: React.ComponentType<{
     { to: "/dashboard/admin/settings", label: "Settings", icon: Settings },
     { to: "/dashboard/admin/profile", label: "Profile", icon: UserIcon },
   ],
-  rh: [
-    { to: "/dashboard/rh", label: "Overview", icon: LayoutDashboard },
-    { to: "/dashboard/rh/people", label: "People", icon: HeartHandshake },
-    { to: "/dashboard/rh/medical", label: "Medical", icon: Stethoscope },
-    { to: "/dashboard/rh/documents", label: "Docs", icon: FileText },
-    { to: "/dashboard/rh/workflows", label: "Workflows", icon: ClipboardList },
-    { to: "/dashboard/rh/knowledge", label: "KB", icon: BarChart3 },
-    { to: "/dashboard/rh/profile", label: "Profile", icon: UserIcon },
-  ],
-  admin: [
-    { to: "/dashboard/admin", label: "Control", icon: LayoutDashboard },
-    { to: "/dashboard/admin/users", label: "Users", icon: Users },
-    { to: "/dashboard/admin/security", label: "Security", icon: ShieldAlert },
-    { to: "/dashboard/admin/settings", label: "Settings", icon: Settings },
-    { to: "/dashboard/admin/profile", label: "Profile", icon: UserIcon },
-  ],
   medecin: [
     { to: "/dashboard/medecin", label: "Overview", icon: LayoutDashboard },
     { to: "/dashboard/medecin/requests", label: "Requests", icon: ClipboardList },
