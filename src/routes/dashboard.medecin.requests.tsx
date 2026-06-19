@@ -74,14 +74,17 @@ function Requests() {
 
             {editing === r.id ? (
               <div className="mt-2 space-y-2 bg-secondary/40 p-2 rounded-lg">
-                <input type="datetime-local" value={when} onChange={(e) => setWhen(e.target.value)} className="w-full rounded-md border border-border bg-background px-2 py-1.5 text-xs" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <input type="date" value={when.slice(0,10)} onChange={(e) => setWhen(e.target.value + "T" + (when.slice(11) || "09:00"))} className="w-full min-w-0 rounded-md border border-border bg-background px-2 py-2 text-xs" />
+                  <input type="time" value={when.slice(11,16)} onChange={(e) => setWhen((when.slice(0,10) || new Date().toISOString().slice(0,10)) + "T" + e.target.value)} className="w-full min-w-0 rounded-md border border-border bg-background px-2 py-2 text-xs" />
+                </div>
                 <textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Private note for the employee…" rows={2} className="w-full rounded-md border border-border bg-background px-2 py-1.5 text-xs" />
-                <div className="flex gap-1">
-                  <button disabled={busy} onClick={() => act(r.id, "scheduled")} className="flex-1 btn-primary !py-1.5 !px-2 !text-[11px] justify-center disabled:opacity-50">
+                <div className="flex flex-wrap gap-1">
+                  <button disabled={busy} onClick={() => act(r.id, "scheduled")} className="flex-1 min-w-[120px] btn-primary !py-2 !px-2 !text-[11px] justify-center disabled:opacity-50">
                     {busy ? <Loader2 className="w-3 h-3 animate-spin"/> : <Calendar className="w-3 h-3"/>}<span>Schedule</span>
                   </button>
-                  <button disabled={busy} onClick={() => act(r.id, "cancelled")} className="px-3 text-[11px] uppercase tracking-wider border border-border rounded-lg hover:bg-muted">Cancel req</button>
-                  <button onClick={() => setEditing(null)} className="w-8 h-8 grid place-items-center rounded-lg hover:bg-muted"><X className="w-3.5 h-3.5"/></button>
+                  <button disabled={busy} onClick={() => act(r.id, "cancelled")} className="px-3 py-2 text-[11px] uppercase tracking-wider border border-border rounded-lg hover:bg-muted">Cancel</button>
+                  <button onClick={() => setEditing(null)} className="w-9 h-9 grid place-items-center rounded-lg hover:bg-muted"><X className="w-3.5 h-3.5"/></button>
                 </div>
               </div>
             ) : (
