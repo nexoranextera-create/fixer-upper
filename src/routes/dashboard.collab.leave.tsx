@@ -56,7 +56,7 @@ function LeavePage() {
         <div className="grid gap-3">
           <div>
             <label className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Type</label>
-            <select value={type} onChange={(e) => setType(e.target.value as any)} className="mt-1 w-full rounded-xl border border-border bg-secondary/40 px-3 py-2 text-sm">
+            <select value={type} onChange={(e) => setType(e.target.value as any)} className="mt-1 w-full min-w-0 rounded-xl border border-border bg-secondary/40 px-3 py-2 text-sm appearance-none">
               {TYPES.map((t) => <option key={t.v} value={t.v}>{t.l}</option>)}
             </select>
           </div>
