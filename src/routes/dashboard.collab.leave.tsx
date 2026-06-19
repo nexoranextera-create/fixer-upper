@@ -60,14 +60,14 @@ function LeavePage() {
               {TYPES.map((t) => <option key={t.v} value={t.v}>{t.l}</option>)}
             </select>
           </div>
-          <div className="grid grid-cols-2 gap-3">
-            <div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="min-w-0">
               <label className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">From</label>
-              <input type="date" value={start} onChange={(e) => setStart(e.target.value)} className="mt-1 w-full rounded-xl border border-border bg-secondary/40 px-3 py-2 text-sm" />
+              <input type="date" value={start} onChange={(e) => setStart(e.target.value)} className="mt-1 w-full min-w-0 rounded-xl border border-border bg-secondary/40 px-3 py-2 text-sm" />
             </div>
-            <div>
+            <div className="min-w-0">
               <label className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">To</label>
-              <input type="date" value={end} onChange={(e) => setEnd(e.target.value)} className="mt-1 w-full rounded-xl border border-border bg-secondary/40 px-3 py-2 text-sm" />
+              <input type="date" value={end} onChange={(e) => setEnd(e.target.value)} className="mt-1 w-full min-w-0 rounded-xl border border-border bg-secondary/40 px-3 py-2 text-sm" />
             </div>
           </div>
           <div>
