@@ -3,7 +3,7 @@ import {
   LogOut, LayoutDashboard, MessageSquare, FileText, Users, ShieldAlert,
   BarChart3, Settings, Bell, Compass, User as UserIcon, X, MapPin, Mail,
   CheckCircle2, AlertTriangle, Info, HeartHandshake, ClipboardList,
-  CalendarDays, Fingerprint, Stethoscope, CheckSquare
+  CalendarDays, Fingerprint, Stethoscope, CheckSquare, Calculator, Shield
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { getUser, logout, ROLE_META, tourSeen, type Role, type User } from "@/lib/auth";
@@ -29,6 +29,7 @@ const NAV: Record<Role, { to: string; label: string; icon: React.ComponentType<{
     { to: "/dashboard/manager/team", label: "Team", icon: Users },
     { to: "/dashboard/manager/leave", label: "Leave", icon: CheckSquare },
     { to: "/dashboard/manager/insights", label: "Insights", icon: BarChart3 },
+    { to: "/dashboard/manager/simulator", label: "What-if", icon: Calculator },
     { to: "/dashboard/manager/qvt", label: "QVT", icon: HeartHandshake },
     { to: "/dashboard/manager/alerts", label: "Alerts", icon: Bell },
     { to: "/dashboard/manager/profile", label: "Profile", icon: UserIcon },
@@ -44,6 +45,7 @@ const NAV: Record<Role, { to: string; label: string; icon: React.ComponentType<{
   ],
   admin: [
     { to: "/dashboard/admin", label: "Control", icon: LayoutDashboard },
+    { to: "/dashboard/admin/supervision", label: "Supervision", icon: Shield },
     { to: "/dashboard/admin/users", label: "Users", icon: Users },
     { to: "/dashboard/admin/security", label: "Security", icon: ShieldAlert },
     { to: "/dashboard/admin/settings", label: "Settings", icon: Settings },
